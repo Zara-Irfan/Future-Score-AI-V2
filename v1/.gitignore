@@ -1,0 +1,7 @@
+.groq_key
+__pycache__/
+.env
+.groq_key
+.groq_key
+.vercel
+.env*.local

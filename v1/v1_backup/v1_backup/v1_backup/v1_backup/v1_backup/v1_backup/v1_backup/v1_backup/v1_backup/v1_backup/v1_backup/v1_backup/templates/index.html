@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FutureScore AI — Career Intelligence 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #060811;
+  --surface: #0d1117;
+  --surface2: #131a24;
+  --border: rgba(255,255,255,0.07);
+  --accent1: #00f5c4;
+  --accent2: #7b61ff;
+  --accent3: #ff6b6b;
+  --accent4: #ffd93d;
+  --text: #e8edf5;
+  --muted: #6b7a99;
+  --glow1: rgba(0,245,196,0.15);
+  --glow2: rgba(123,97,255,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Background ── */
+.bg-grid{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(0,245,196,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,196,0.03) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+.bg-orb{
+  position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;
+  animation:drift 12s ease-in-out infinite alternate;
+}
+.bg-orb.o1{width:600px;height:600px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(0,245,196,0.12),transparent 70%)}
+.bg-orb.o2{width:500px;height:500px;bottom:-150px;right:-150px;background:radial-gradient(circle,rgba(123,97,255,0.12),transparent 70%);animation-delay:-6s}
+.bg-orb.o3{width:300px;height:300px;top:50%;left:50%;background:radial-gradient(circle,rgba(255,107,107,0.06),transparent 70%);animation-delay:-3s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,20px) scale(1.1)}}
+
+/* ── Layout ── */
+.container{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px 80px}
+
+/* ── Header ── */
+header{
+  text-align:center;padding:60px 0 40px;
+  animation:fadeUp 0.8s ease both;
+}
+.logo{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--accent1);
+  border:1px solid rgba(0,245,196,0.3);border-radius:100px;
+  padding:6px 16px;margin-bottom:24px;
+  background:rgba(0,245,196,0.05);
+}
+.logo-dot{width:6px;height:6px;border-radius:50%;background:var(--accent1);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+h1{
+  font-family:'Syne',sans-serif;font-size:clamp(2.2rem,6vw,3.8rem);
+  font-weight:800;line-height:1.1;margin-bottom:16px;
+  background:linear-gradient(135deg,#fff 0%,var(--accent1) 50%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.subtitle{font-size:1.05rem;color:var(--muted);font-weight:300;max-width:500px;margin:0 auto 32px}
+.stats-row{
+  display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.stat{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--accent1)}
+.stat-label{font-size:0.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+/* ── Card ── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:28px;margin-bottom:20px;
+  animation:fadeUp 0.6s ease both;
+  transition:border-color 0.3s;
+}
+.card:hover{border-color:rgba(0,245,196,0.15)}
+.card-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+}
+.card-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  flex-shrink:0;
+}
+.icon-teal{background:rgba(0,245,196,0.1)}
+.icon-purple{background:rgba(123,97,255,0.1)}
+.card-title{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.5px}
+.card-hint{font-size:0.78rem;color:var(--muted);margin-left:auto}
+
+/* ── Textarea ── */
+.field-wrap{position:relative}
+textarea{
+  width:100%;min-height:160px;resize:vertical;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;padding:16px;
+  color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;line-height:1.6;
+  transition:border-color 0.3s,box-shadow 0.3s;outline:none;
+  max-height:400px;overflow-y:auto;
+}
+textarea:focus{border-color:rgba(0,245,196,0.4);box-shadow:0 0 0 3px rgba(0,245,196,0.08)}
+textarea::placeholder{color:var(--muted)}
+.char-count{
+  position:absolute;bottom:10px;right:14px;
+  font-size:0.72rem;color:var(--muted);pointer-events:none;
+}
+
+/* ── Upload Button ── */
+.upload-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.upload-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:8px;font-size:0.8rem;font-weight:500;
+  cursor:pointer;border:1px solid var(--border);
+  background:var(--surface2);color:var(--muted);
+  transition:all 0.2s;white-space:nowrap;
+}
+.upload-btn:hover{border-color:rgba(0,245,196,0.4);color:var(--accent1);background:rgba(0,245,196,0.05)}
+.upload-btn svg{width:14px;height:14px;flex-shrink:0}
+input[type=file]{display:none}
+.file-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:6px;font-size:0.75rem;
+  background:rgba(0,245,196,0.1);color:var(--accent1);border:1px solid rgba(0,245,196,0.2);
+}
+
+/* ── Analyze Button ── */
+.analyze-btn{
+  width:100%;padding:18px;border-radius:14px;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:#000;position:relative;overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 30px rgba(0,245,196,0.2);
+}
+.analyze-btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,245,196,0.35)}
+.analyze-btn:active{transform:translateY(0)}
+.analyze-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.analyze-btn .btn-shine{
+  position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:shine 3s ease-in-out infinite;
+}
+@keyframes shine{0%{left:-100%}50%,100%{left:150%}}
+
+/* ── Loading ── */
+.loading{display:none;text-align:center;padding:40px}
+.loading.active{display:block}
+.spinner{
+  width:48px;height:48px;border-radius:50%;margin:0 auto 20px;
+  border:3px solid var(--border);border-top-color:var(--accent1);
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:var(--muted);font-size:0.9rem}
+.loading-steps{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.loading-step{
+  font-size:0.8rem;color:var(--muted);opacity:0;
+  animation:fadeIn 0.5s ease forwards;
+}
+.loading-step.s1{animation-delay:0.5s}
+.loading-step.s2{animation-delay:1.5s}
+.loading-step.s3{animation-delay:2.5s}
+.loading-step.s4{animation-delay:3.5s}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ── Results ── */
+#results{display:none;animation:fadeUp 0.6s ease both}
+#results.active{display:block}
+
+/* Score Ring */
+.score-section{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:32px;margin-bottom:20px;
+  text-align:center;
+}
+.score-ring-wrap{position:relative;width:160px;height:160px;margin:0 auto 20px}
+.score-ring{transform:rotate(-90deg)}
+.score-ring-bg{fill:none;stroke:var(--surface2);stroke-width:10}
+.score-ring-fill{
+  fill:none;stroke-width:10;stroke-linecap:round;
+  stroke-dasharray:408;stroke-dashoffset:408;
+  transition:stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1);
+}
+.score-value{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;
+}
+.score-label{font-size:0.8rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.score-grade{
+  display:inline-block;padding:6px 20px;border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;
+  margin-top:12px;
+}
+
+/* ATS bars */
+.ats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.ats-item{background:var(--surface2);border-radius:12px;padding:14px}
+.ats-label{font-size:0.78rem;color:var(--muted);margin-bottom:8px;letter-spacing:0.5px}
+.ats-bar-wrap{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.ats-bar{height:100%;border-radius:3px;width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
+.ats-score{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700}
+
+/* Result sections */
+.result-section{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;margin-bottom:16px;overflow:hidden;
+}
+.result-section-header{
+  display:flex;align-items:center;gap:10px;padding:16px 20px;
+  cursor:pointer;user-select:none;
+  border-bottom:1px solid transparent;
+  transition:background 0.2s;
+}
+.result-section-header:hover{background:rgba(255,255,255,0.02)}
+.result-section-header.open{border-bottom-color:var(--border)}
+.section-icon{font-size:18px}
+.section-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.5px}
+.section-chevron{margin-left:auto;color:var(--muted);transition:transform 0.3s;font-size:12px}
+.result-section-header.open .section-chevron{transform:rotate(180deg)}
+.result-section-body{
+  padding:0 20px;max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease,padding 0.3s;
+}
+.result-section-body.open{max-height:2000px;padding:20px}
+
+/* Result content */
+.result-body{
+  font-size:0.88rem;line-height:1.75;color:#c8d0e0;
+  white-space:pre-wrap;word-break:break-word;
+}
+.result-body strong,.result-body b{color:var(--text)}
+
+/* Roadmap tabs */
+.roadmap-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.roadmap-tab{
+  padding:6px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;
+  cursor:pointer;border:1px solid var(--border);
+  background:transparent;color:var(--muted);
+  transition:all 0.2s;font-family:'Syne',sans-serif;
+}
+.roadmap-tab.active{
+  background:var(--accent2);border-color:var(--accent2);color:#fff;
+}
+.roadmap-panel{display:none}
+.roadmap-panel.active{display:block}
+.roadmap-item{
+  display:flex;gap:12px;padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.roadmap-item:last-child{border-bottom:none}
+.roadmap-bullet{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:2px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:10px;color:#000;font-weight:700;
+}
+.roadmap-text{font-size:0.87rem;line-height:1.6;color:#c8d0e0}
+
+/* Alert boxes */
+.alert-box{
+  border-radius:12px;padding:16px;margin-top:0;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.alert-box.salary{background:rgba(255,217,61,0.08);border:1px solid rgba(255,217,61,0.2)}
+.alert-box.ai{background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2)}
+.alert-emoji{font-size:20px;flex-shrink:0;margin-top:2px}
+.alert-text{font-size:0.87rem;line-height:1.7;color:#c8d0e0}
+
+/* Copy / Share */
+.actions-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.action-btn{
+  flex:1;min-width:120px;padding:12px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--muted);font-size:0.82rem;font-weight:500;
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.action-btn:hover{border-color:rgba(0,245,196,0.3);color:var(--accent1)}
+
+/* Error */
+.error-box{
+  background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.25);
+  border-radius:12px;padding:16px;color:#ff9a9a;font-size:0.88rem;
+  display:none;margin-top:16px;
+}
+.error-box.active{display:block}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Mobile */
+@media(max-width:600px){
+  .ats-grid{grid-template-columns:1fr}
+  .stats-row{gap:20px}
+  header{padding:40px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb o1"></div>
+<div class="bg-orb o2"></div>
+<div class="bg-orb o3"></div>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="logo"><span class="logo-dot"></span>FutureScore AI · 2026</div>
+    <h1>Your Career Intelligence<br>Command Center</h1>
+    <p class="subtitle">AI-powered ATS analysis, skill gap detection, and personalized 1-year career roadmaps</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">ATS Accuracy</div></div>
+      <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Tech Aware</div></div>
+      <div class="stat"><div class="stat-num">5x</div><div class="stat-label">Career Growth</div></div>
+    </div>
+  </header>
+
+  <!-- Resume Input -->
+  <div class="card" style="animation-delay:0.1s">
+    <div class="card-header">
+      <div class="card-icon icon-teal">📄</div>
+      <span class="card-title">YOUR RESUME</span>
+      <span class="card-hint">Max 500KB</span>
+    </div>
+    <div class="upload-row">
+      <label class="upload-btn" for="resumeFile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+        Upload PDF / DOCX / TXT
+      </label>
+      <input type="file" id="resumeFile" accept=".pdf,.docx,.txt" onchange="handleUpload('resume','resumeFile','resumeBadge','resumeText')">
+      <span class="file-badge" id="resumeBadge" style="display:none"></span>
+    </div>
+    <div class="field-wrap">
+      <textarea id="resumeText" placeholder="Or paste your resume here... Include work experience, skills, education, and achievements." maxlength="6000" oninput="updateCount(this,'resumeCount')"></textarea>
+      <span class="char-count"><span id="resumeCount">0</span>/6000</span>
+    </div>
+  </div>
+
+  <!-- Job Description Input -->
+  <div class="card" style="animation-delay:0.2s">
+    <div class="card-header">
+      <div class="card-icon icon-purple">💼</div>
+      <span class="card-title">JOB DESCRIPTION</span>
+      <span class="card-hint">Max 500KB</span>
+    </div>
+    <div class="upload-row">
+      <label class="upload-btn" for="jobFile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+        Upload PDF / DOCX / TXT
+      </label>
+      <input type="file" id="jobFile" accept=".pdf,.docx,.txt" onchange="handleUpload('job_desc','jobFile','jobBadge','jobText')">
+      <span class="file-badge" id="jobBadge" style="display:none"></span>
+    </div>
+    <div class="field-wrap">
+      <textarea id="jobText" placeholder="Or paste the job description here... Include role requirements, responsibilities, and qualifications." maxlength="3000" oninput="updateCount(this,'jobCount')"></textarea>
+      <span class="char-count"><span id="jobCount">0</span>/3000</span>
+    </div>
+  </div>
+
+  <!-- Analyze Button -->
+  <div class="card" style="animation-delay:0.3s;padding:20px">
+    <button class="analyze-btn" id="analyzeBtn" onclick="analyze()">
+      <div class="btn-shine"></div>
+      ⚡ Analyze My Career Match
+    </button>
+    <div class="error-box" id="errorBox"></div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">FutureScore AI is analyzing your profile...</div>
+    <div class="loading-steps">
+      <div class="loading-step s1">🔍 Scanning ATS compatibility...</div>
+      <div class="loading-step s2">🧠 Mapping skill gaps against 2026 standards...</div>
+      <div class="loading-step s3">🗺️ Building your personalized career roadmap...</div>
+      <div class="loading-step s4">✨ Generating insights & course recommendations...</div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results">
+
+    <!-- Score -->
+    <div class="score-section">
+      <div class="score-ring-wrap">
+        <svg class="score-ring" width="160" height="160" viewBox="0 0 160 160">
+          <circle class="score-ring-bg" cx="80" cy="80" r="65"/>
+          <circle class="score-ring-fill" id="scoreRingFill" cx="80" cy="80" r="65"/>
+        </svg>
+        <div class="score-value" id="scoreValue" style="color:var(--accent1)">—</div>
+      </div>
+      <div class="score-label">ATS MATCH SCORE</div>
+      <div class="score-grade" id="scoreGrade"></div>
+
+      <!-- ATS Breakdown -->
+      <div class="ats-grid" id="atsGrid"></div>
+    </div>
+
+    <!-- Strengths -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">💪</span>
+        <span class="section-title">STRENGTHS</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="strengthsBody"></div>
+    </div>
+
+    <!-- Missing Skills -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">🎯</span>
+        <span class="section-title">MISSING SKILLS</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="missingBody"></div>
+    </div>
+
+    <!-- Resume Improvements -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">✏️</span>
+        <span class="section-title">RESUME IMPROVEMENTS</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="improvementsBody"></div>
+    </div>
+
+    <!-- Courses -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">🎓</span>
+        <span class="section-title">RECOMMENDED COURSES</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="coursesBody"></div>
+    </div>
+
+    <!-- Career Roadmap -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">🗺️</span>
+        <span class="section-title">YOUR CAREER ROADMAP</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="roadmapBody">
+        <div class="roadmap-tabs">
+          <button class="roadmap-tab active" onclick="showTab('30')">30 Days</button>
+          <button class="roadmap-tab" onclick="showTab('60')">60 Days</button>
+          <button class="roadmap-tab" onclick="showTab('90')">90 Days</button>
+          <button class="roadmap-tab" onclick="showTab('120')">120 Days</button>
+          <button class="roadmap-tab" onclick="showTab('365')">1 Year</button>
+        </div>
+        <div id="roadmap-30" class="roadmap-panel active"></div>
+        <div id="roadmap-60" class="roadmap-panel"></div>
+        <div id="roadmap-90" class="roadmap-panel"></div>
+        <div id="roadmap-120" class="roadmap-panel"></div>
+        <div id="roadmap-365" class="roadmap-panel"></div>
+      </div>
+    </div>
+
+    <!-- Salary & AI Alert -->
+    <div class="result-section">
+      <div class="result-section-header open" onclick="toggleSection(this)">
+        <span class="section-icon">💰</span>
+        <span class="section-title">SALARY & AI INSIGHTS</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="result-section-body open" id="insightsBody"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-row">
+      <button class="action-btn" onclick="copyResults()">📋 Copy Full Report</button>
+      <button class="action-btn" onclick="resetForm()">🔄 New Analysis</button>
+    </div>
+
+  </div><!-- /results -->
+
+</div><!-- /container -->
+
+<script>
+let fullResult = '';
+
+function updateCount(el, countId) {
+  document.getElementById(countId).textContent = el.value.length;
+}
+
+async function handleUpload(field, inputId, badgeId, textareaId) {
+  const file = document.getElementById(inputId).files[0];
+  if (!file) return;
+  const badge = document.getElementById(badgeId);
+  const textarea = document.getElementById(textareaId);
+  badge.textContent = '⏳ Uploading...';
+  badge.style.display = 'inline-flex';
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('field', field);
+  try {
+    const res = await fetch('/upload', {method:'POST', body:fd});
+    const data = await res.json();
+    if (data.error) { badge.textContent = '❌ ' + data.error; return; }
+    textarea.value = data.text;
+    updateCount(textarea, field === 'resume' ? 'resumeCount' : 'jobCount');
+    badge.textContent = '✅ ' + file.name;
+  } catch(e) {
+    badge.textContent = '❌ Upload failed';
+  }
+}
+
+async function analyze() {
+  const resume = document.getElementById('resumeText').value.trim();
+  const jobDesc = document.getElementById('jobText').value.trim();
+  const btn = document.getElementById('analyzeBtn');
+  const errorBox = document.getElementById('errorBox');
+
+  errorBox.classList.remove('active');
+
+  if (!resume || !jobDesc) {
+    showError('Please provide both your resume and a job description.');
+    return;
+  }
+
+  btn.disabled = true;
+  document.getElementById('loading').classList.add('active');
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').classList.remove('active');
+
+  try {
+    const res = await fetch('/analyze', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({resume, job_desc: jobDesc})
+    });
+    const data = await res.json();
+
+    if (data.error) { showError(data.error); return; }
+
+    fullResult = data.result;
+    renderResults(data.result, data.score);
+  } catch(e) {
+    showError('Network error. Please try again.');
+  } finally {
+    btn.disabled = false;
+    document.getElementById('loading').classList.remove('active');
+  }
+}
+
+function showError(msg) {
+  const eb = document.getElementById('errorBox');
+  eb.textContent = '⚠️ ' + msg;
+  eb.classList.add('active');
+  document.getElementById('loading').classList.remove('active');
+  document.getElementById('analyzeBtn').disabled = false;
+}
+
+function renderResults(text, score) {
+  // Score ring
+  const s = score || 0;
+  const fill = document.getElementById('scoreRingFill');
+  const circumference = 408;
+  const offset = circumference - (s / 100) * circumference;
+  let color = s >= 75 ? '#00f5c4' : s >= 50 ? '#ffd93d' : '#ff6b6b';
+  fill.style.stroke = color;
+  fill.style.strokeDashoffset = circumference;
+  setTimeout(() => fill.style.strokeDashoffset = offset, 100);
+
+  document.getElementById('scoreValue').textContent = s;
+  document.getElementById('scoreValue').style.color = color;
+
+  const grade = s >= 85 ? '🏆 Excellent Match' : s >= 70 ? '✅ Strong Candidate' : s >= 50 ? '⚡ Needs Improvement' : '🔧 Major Gaps';
+  const gradeEl = document.getElementById('scoreGrade');
+  gradeEl.textContent = grade;
+  gradeEl.style.background = color + '18';
+  gradeEl.style.color = color;
+  gradeEl.style.border = '1px solid ' + color + '40';
+
+  // ATS Breakdown
+  const atsSection = extractSection(text, 'ATS BREAKDOWN');
+  renderATSBars(atsSection);
+
+  // Sections
+  renderList('strengthsBody', extractSection(text, 'STRENGTHS'), '#00f5c4');
+  renderList('missingBody', extractSection(text, 'MISSING SKILLS'), '#ff6b6b');
+  renderList('improvementsBody', extractSection(text, 'RESUME IMPROVEMENTS'), '#ffd93d');
+  renderCourses('coursesBody', extractSection(text, 'RECOMMENDED COURSES'));
+  renderRoadmap(text);
+  renderInsights(text);
+
+  document.getElementById('results').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('results').classList.add('active');
+    document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
+}
+
+function extractSection(text, heading) {
+  const lines = text.split('\n');
+  let capturing = false, result = [];
+  const headings = ['SCORE','ATS BREAKDOWN','STRENGTHS','MISSING SKILLS','RESUME IMPROVEMENTS',
+    'RECOMMENDED COURSES','CAREER ROADMAP','30 DAYS','60 DAYS','90 DAYS','120 DAYS','1 YEAR',
+    'SALARY INSIGHT','AI DISRUPTION'];
+  for (let line of lines) {
+    const upper = line.trim().toUpperCase();
+    if (upper.startsWith(heading.toUpperCase())) { capturing = true; continue; }
+    if (capturing) {
+      const isNewHeading = headings.some(h => upper.startsWith(h) && h !== heading.toUpperCase());
+      if (isNewHeading) break;
+      result.push(line);
+    }
+  }
+  return result.join('\n').trim();
+}
+
+function renderList(elId, text, color) {
+  const el = document.getElementById(elId);
+  const lines = text.split('\n').filter(l => l.trim().match(/^[-•*\d]/));
+  if (!lines.length) { el.innerHTML = `<div class="result-body">${text}</div>`; return; }
+  el.innerHTML = lines.map(l => {
+    const content = l.replace(/^[-•*\d.]+\s*/, '');
+    return `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span style="color:${color};flex-shrink:0;margin-top:2px">▸</span>
+      <span style="font-size:0.87rem;line-height:1.6;color:#c8d0e0">${content}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderATSBars(text) {
+  const grid = document.getElementById('atsGrid');
+  const items = [
+    {key:'Keyword Match', color:'#00f5c4'},
+    {key:'Semantic', color:'#7b61ff'},
+    {key:'Formatting', color:'#ffd93d'},
+    {key:'Recency', color:'#ff6b6b'}
+  ];
+  let html = '';
+  items.forEach(item => {
+    const line = text.split('\n').find(l => l.toLowerCase().includes(item.key.toLowerCase())) || '';
+    const match = line.match(/(\d+)\s*\/\s*25/);
+    const val = match ? parseInt(match[1]) : 0;
+    const pct = (val / 25) * 100;
+    const label = line.replace(/^[-•*]+\s*/, '').split(':')[0].trim() || item.key;
+    html += `<div class="ats-item">
+      <div class="ats-label">${label}</div>
+      <div class="ats-bar-wrap"><div class="ats-bar" style="background:${item.color};width:0" data-width="${pct}%"></div></div>
+      <div class="ats-score" style="color:${item.color}">${val}<span style="color:var(--muted);font-size:0.7rem">/25</span></div>
+    </div>`;
+  });
+  grid.innerHTML = html;
+  setTimeout(() => {
+    grid.querySelectorAll('.ats-bar').forEach(b => b.style.width = b.dataset.width);
+  }, 200);
+}
+
+function renderCourses(elId, text) {
+  const el = document.getElementById(elId);
+  const lines = text.split('\n').filter(l => l.trim());
+  let html = '';
+  lines.forEach(line => {
+    const clean = line.replace(/^\d+\.\s*/, '').trim();
+    if (!clean) return;
+    const parts = clean.split('|').map(p => p.trim());
+    if (parts.length >= 3) {
+      const [name, platform, url, duration, why] = parts;
+      const link = url && url.startsWith('http') ? `<a href="${url}" target="_blank" style="color:var(--accent1);font-size:0.75rem;text-decoration:none">🔗 View Course</a>` : '';
+      html += `<div style="background:var(--surface2);border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid var(--border)">
+        <div style="font-weight:600;color:var(--text);font-size:0.9rem;margin-bottom:6px">${name || clean}</div>
+        ${platform ? `<div style="font-size:0.78rem;color:var(--accent2);margin-bottom:4px">📚 ${platform}${duration ? ' · ' + duration : ''}</div>` : ''}
+        ${why ? `<div style="font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:8px">${why}</div>` : ''}
+        ${link}
+      </div>`;
+    } else {
+      html += `<div style="font-size:0.87rem;color:#c8d0e0;padding:6px 0;border-bottom:1px solid var(--border)">${clean}</div>`;
+    }
+  });
+  el.innerHTML = html || `<div class="result-body">${text}</div>`;
+}
+
+function renderRoadmap(text) {
+  const periods = [
+    {id:'30', label:'30 DAYS'},
+    {id:'60', label:'60 DAYS'},
+    {id:'90', label:'90 DAYS'},
+    {id:'120', label:'120 DAYS'},
+    {id:'365', label:'1 YEAR'}
+  ];
+  periods.forEach(p => {
+    const section = extractSection(text, p.label);
+    const el = document.getElementById('roadmap-' + p.id);
+    const lines = section.split('\n').filter(l => l.trim().match(/^[-•*\d]/));
+    if (!lines.length) { el.innerHTML = `<div class="result-body">${section}</div>`; return; }
+    el.innerHTML = lines.map((l,i) => {
+      const content = l.replace(/^[-•*\d.]+\s*/, '');
+      return `<div class="roadmap-item">
+        <div class="roadmap-bullet">${i+1}</div>
+        <div class="roadmap-text">${content}</div>
+      </div>`;
+    }).join('');
+  });
+}
+
+function renderInsights(text) {
+  const salary = extractSection(text, 'SALARY INSIGHT');
+  const ai = extractSection(text, 'AI DISRUPTION');
+  document.getElementById('insightsBody').innerHTML = `
+    ${salary ? `<div class="alert-box salary" style="margin-bottom:12px">
+      <div class="alert-emoji">💰</div>
+      <div class="alert-text"><strong style="color:var(--accent4)">Salary Insight</strong><br>${salary}</div>
+    </div>` : ''}
+    ${ai ? `<div class="alert-box ai">
+      <div class="alert-emoji">🤖</div>
+      <div class="alert-text"><strong style="color:var(--accent3)">AI Disruption Alert</strong><br>${ai}</div>
+    </div>` : ''}
+  `;
+}
+
+function showTab(period) {
+  document.querySelectorAll('.roadmap-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.roadmap-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('roadmap-' + period).classList.add('active');
+}
+
+function toggleSection(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function copyResults() {
+  navigator.clipboard.writeText(fullResult).then(() => {
+    const btn = event.target;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Full Report', 2000);
+  });
+}
+
+function resetForm() {
+  document.getElementById('resumeText').value = '';
+  document.getElementById('jobText').value = '';
+  document.getElementById('resumeCount').textContent = '0';
+  document.getElementById('jobCount').textContent = '0';
+  document.getElementById('resumeBadge').style.display = 'none';
+  document.getElementById('jobBadge').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('errorBox').classList.remove('active');
+  document.getElementById('analyzeBtn').disabled = false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
