@@ -13,8 +13,7 @@ All updates, conversations, and file changes for FutureScore AI project.
 - Organized: Moved all V1 files to v1/ folder, V2 files to root
 - Removed Flutter mobile_app folder
 - Initialized git repo, added GitHub remote, committed V2
-- Pushed to GitHub: https://github.com/Zara-Irfan/Future-Score-AI-V2.git
-- Vercel should auto-deploy the Node.js app
+- Fixed vercel.json: Removed legacy builds, used functions for Node.js deployment
 
 ## Version 1.0.0 (Python Flask) - Initial
 - Created Flask app with Groq AI integration
