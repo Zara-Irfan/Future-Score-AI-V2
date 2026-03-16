@@ -3,3 +3,5 @@ uploads/
 .env
 .env.local
 *.log
+.vercel
+.env*.local
